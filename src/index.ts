@@ -47,7 +47,11 @@ if (todoList.length > 0) {
 }
 
 addButton.addEventListener('click', () => {
-    const inputText = document.querySelector('input')?.value;
+    const inputText = document.querySelector('input')?.value.trim();
+    if(!inputText){
+        alert('Please enter some text');
+        return;
+    }
     document.querySelector('input')!.value = '';
     const todo: Todo = {
         id: Date.now(),
@@ -130,11 +134,16 @@ function editFun(bt: HTMLButtonElement) {
 
     }
     else {
+       const inputText = (li.children[0].children[0] as HTMLInputElement).value.trim();
+        if(!inputText){
+            alert('Please enter some text');
+            return;
+        }
         bt.textContent = 'Edit';
         const key = li.getAttribute('key');
         const todo = todoList.find(todo => todo.id.toString() === key);
         if (todo) {
-            todo.text = (li.children[0].children[0] as HTMLInputElement).value;
+            todo.text = inputText
         }
         buildTable();
         localStorage.setItem('todoList', JSON.stringify(todoList));

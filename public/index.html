@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <!-- include jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <!--     aside-left  -->
+      <div class="aside-left">
+        <h1>🚀 Fast Todo</h1>
+
+        <div>
+          <ul onclick="filterTodo(event)">
+            <li class="active">Show All</li>
+            <li>Completed</li>
+            <li>Remaining</li>
+          </ul>
+        </div>
+      </div>
+      <!--     main  -->
+      <div class="main">
+        <div class="header">
+          <div>Feb 18, 2025</div>
+          <div>
+            <span>Good Afternoon.</span>
+            <span>What's your plan today?</span>
+          </div>
+        </div>
+
+        <div class="todo">
+          <div class="add-todo">
+            <input type="text" placeholder="Add todo" />
+            <button id="add-button">Add</button>
+          </div>
+
+          <div class="todo-list">
+            <table key="table111">
+              <thead>
+                <tr>
+                  <th>Task</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="aside-right"></div>
+    </div>
+
+    <script src="../dist/index.js"></script>
+  </body>
+</html>

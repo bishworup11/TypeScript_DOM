@@ -1,0 +1,124 @@
+body{
+    margin: 0;
+    padding: 0;
+    color: rgb(218, 228, 228);
+}
+input{
+    background-color: #d2dce2;
+    color: rgb(15, 15, 15);
+    font-size: medium;
+}
+button {
+    background-color: #515253;
+    color: rgb(218, 228, 228);
+    font-size: medium;
+  
+}
+.container{
+    display: flex;
+    justify-content: space-between; 
+    height: 100vh;
+}
+
+.main{
+    width: 60%;
+    background-color: #333030;
+}
+
+.aside-left{
+    width: 15%;
+    background-color: #515253;
+}
+
+.aside-right{
+    width: 25%;
+    background-color: #333030;;
+}
+
+.header{
+    margin: 50px;
+    padding: 10px;
+    text-align: center;
+    font-size: xx-large;
+    /* background-color: #8f0b0b; */
+}
+
+.todo{
+    padding: 10px;
+    text-align: center;
+    font-size: medium;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   
+}
+
+.todo-list{
+     margin: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+}
+
+table{
+    margin-top: 2rem;
+    width: 80%;    
+    border-collapse: collapse; 
+}
+
+ th{
+
+    text-align: center;
+ }
+
+ td:nth-child(odd) {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    height: 50px;
+  vertical-align: bottom;
+  }
+
+ td:nth-child(even) {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    height: 50px;
+  vertical-align: bottom;
+  }
+
+  .completed{
+   
+    background-color: rgba(44, 117, 44, 0.2);
+    background-color: #405f45;
+  }
+
+ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+}
+li{
+    padding: 10px;
+    text-align: center;
+    font-size: medium;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+li:hover{
+    background-color: #458345;
+    color: rgb(218, 228, 228);
+    cursor: pointer;
+}
+
+.active{
+
+    background-color: #456c83;
+
+    color: rgb(218, 228, 228);
+}
+
+

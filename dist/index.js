@@ -1,6 +1,7 @@
 "use strict";
 const addButton = document.getElementById('add-button');
 const deleteButton = document.getElementById('delete-button');
+const clearButton = document.getElementById('clearAllCompleted');
 const header = document.querySelector('.header');
 function getDayText(day) {
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -30,8 +31,9 @@ const welcomeText = getGreeting(new Date().getHours());
 header.children[0].textContent = `${date} ${month} ${year}`;
 header.children[1].textContent = welcomeText;
 let todoList = localStorage.getItem('todoList') ? JSON.parse(localStorage.getItem('todoList')) : [];
+let filterAttribute = 'Show All';
 if (todoList.length > 0) {
-    buildTable(todoList);
+    buildTable();
 }
 addButton.addEventListener('click', () => {
     var _a;
@@ -44,14 +46,21 @@ addButton.addEventListener('click', () => {
     };
     todoList.push(todo);
     console.log(todoList);
-    buildTable(todoList);
+    buildTable();
     localStorage.setItem('todoList', JSON.stringify(todoList));
 });
-function buildTable(todoList) {
+function buildTable() {
     const table = document.querySelector('table');
-    //clear table body
+    let filterData = todoList;
+    if (filterAttribute === 'Completed') {
+        filterData = todoList.filter(todo => todo.done);
+    }
+    else if (filterAttribute !== 'Show All') {
+        filterData = todoList.filter(todo => !todo.done);
+    }
+    //clear table
     table.children[1].innerHTML = '';
-    todoList.forEach(todo => {
+    filterData.forEach(todo => {
         const tr = document.createElement('tr');
         const td1 = document.createElement('td');
         td1.textContent = todo.text;
@@ -88,7 +97,7 @@ function completeFun(bt) {
     if (todo) {
         todo.done = !todo.done;
     }
-    buildTable(todoList);
+    buildTable();
     localStorage.setItem('todoList', JSON.stringify(todoList));
 }
 function editFun(bt) {
@@ -105,7 +114,7 @@ function editFun(bt) {
         if (todo) {
             todo.text = li.children[0].children[0].value;
         }
-        buildTable(todoList);
+        buildTable();
         localStorage.setItem('todoList', JSON.stringify(todoList));
     }
     ;
@@ -113,24 +122,27 @@ function editFun(bt) {
 function filterTodo(e) {
     const clickText = e.target.innerText;
     const par = e.target.parentElement;
+    par.children[0].classList.remove('active');
+    par.children[1].classList.remove('active');
+    par.children[2].classList.remove('active');
     if (clickText === 'Show All') {
-        buildTable(todoList);
         par.children[0].classList.add('active');
-        par.children[1].classList.remove('active');
-        par.children[2].classList.remove('active');
+        filterAttribute = 'Show All';
     }
     else if (clickText === 'Completed') {
-        const completedList = todoList.filter(todo => todo.done);
-        buildTable(completedList);
-        par.children[0].classList.remove('active');
+        filterAttribute = 'Completed';
         par.children[1].classList.add('active');
-        par.children[2].classList.remove('active');
     }
     else {
-        const pendingList = todoList.filter(todo => !todo.done);
-        buildTable(pendingList);
-        par.children[0].classList.remove('active');
-        par.children[1].classList.remove('active');
+        filterAttribute = 'Pending';
         par.children[2].classList.add('active');
     }
+    buildTable();
 }
+clearButton.addEventListener('click', () => {
+    if (confirm('Are you sure you want to delete all completed tasks?')) {
+        todoList = todoList.filter(todo => !todo.done);
+        buildTable();
+        localStorage.setItem('todoList', JSON.stringify(todoList));
+    }
+});

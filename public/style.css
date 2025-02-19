@@ -18,6 +18,18 @@ button {
 
 }
 
+h1{
+    text-align: center;
+    font-size: xx-large;
+}
+
+h2{
+    text-align: center;
+    font-size: x-large;
+    padding: .5rem;
+    background-color: #58416e;
+}
+
 button:hover {
     cursor: pointer;
     transition: 0.2s;

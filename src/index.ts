@@ -59,7 +59,7 @@ addButton.addEventListener('click', () => {
         done: false
     }
     todoList.push(todo);
-    console.log(todoList);
+    //console.log(todoList);
 
     buildTable();
     
@@ -75,6 +75,7 @@ function buildStats() {
 
     const statsRem = document.querySelector('#stat-rem')!;
     statsRem.innerHTML = `Total Remaining: ${total-totalCompleted} `;
+  //  console.log(totalCompleted,total);
 
 }
 
@@ -125,6 +126,7 @@ function deleteFun(bt: HTMLButtonElement) {
     todoList = todoList.filter(todo => todo.id.toString() !== key);
     localStorage.setItem('todoList', JSON.stringify(todoList));
     li.parentElement?.removeChild(li);
+    buildStats();
 }
 
 function completeFun(bt: HTMLButtonElement) {

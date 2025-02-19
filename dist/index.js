@@ -49,7 +49,7 @@ addButton.addEventListener('click', () => {
         done: false
     };
     todoList.push(todo);
-    console.log(todoList);
+    //console.log(todoList);
     buildTable();
     localStorage.setItem('todoList', JSON.stringify(todoList));
 });
@@ -60,6 +60,7 @@ function buildStats() {
     statsCom.innerHTML = `Total Completed: ${totalCompleted}`;
     const statsRem = document.querySelector('#stat-rem');
     statsRem.innerHTML = `Total Remaining: ${total - totalCompleted} `;
+    //  console.log(totalCompleted,total);
 }
 function buildTable() {
     buildStats();
@@ -101,6 +102,7 @@ function deleteFun(bt) {
     todoList = todoList.filter(todo => todo.id.toString() !== key);
     localStorage.setItem('todoList', JSON.stringify(todoList));
     (_b = li.parentElement) === null || _b === void 0 ? void 0 : _b.removeChild(li);
+    buildStats();
 }
 function completeFun(bt) {
     var _a;

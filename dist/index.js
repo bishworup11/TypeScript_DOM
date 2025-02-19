@@ -53,7 +53,16 @@ addButton.addEventListener('click', () => {
     buildTable();
     localStorage.setItem('todoList', JSON.stringify(todoList));
 });
+function buildStats() {
+    const totalCompleted = todoList.filter(todo => todo.done).length;
+    const total = todoList.length;
+    const statsCom = document.querySelector('#stat-com');
+    statsCom.innerHTML = `Total Completed: ${totalCompleted}`;
+    const statsRem = document.querySelector('#stat-rem');
+    statsRem.innerHTML = `Total Remaining: ${total - totalCompleted} `;
+}
 function buildTable() {
+    buildStats();
     const table = document.querySelector('table');
     let filterData = todoList;
     if (filterAttribute === 'Completed') {

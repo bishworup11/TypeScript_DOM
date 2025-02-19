@@ -62,12 +62,25 @@ addButton.addEventListener('click', () => {
     console.log(todoList);
 
     buildTable();
+    
     localStorage.setItem('todoList', JSON.stringify(todoList));
 
 })
 
-function buildTable() {
+function buildStats() {
+    const totalCompleted = todoList.filter(todo => todo.done).length;
+    const total= todoList.length;
+    const statsCom = document.querySelector('#stat-com')!;
+    statsCom.innerHTML = `Total Completed: ${totalCompleted}`;
 
+    const statsRem = document.querySelector('#stat-rem')!;
+    statsRem.innerHTML = `Total Remaining: ${total-totalCompleted} `;
+
+}
+
+
+function buildTable() {
+    buildStats();
     const table = document.querySelector('table')!;
     let filterData:Todo[] = todoList;
     if (filterAttribute === 'Completed') {
@@ -165,10 +178,8 @@ function filterTodo(e: Event) {
         filterAttribute = 'Show All';
     }
     else if (clickText === 'Completed') {
-    
         filterAttribute = 'Completed';
         par.children[1].classList.add('active');
-
 
     }
     else {
@@ -178,6 +189,7 @@ function filterTodo(e: Event) {
     buildTable();
 }
 
+
 clearButton.addEventListener('click', () => {
     if(confirm('Are you sure you want to delete all completed tasks?'))
     {
@@ -185,6 +197,5 @@ clearButton.addEventListener('click', () => {
         buildTable();
         localStorage.setItem('todoList', JSON.stringify(todoList));
     }
-    
 }
 )
